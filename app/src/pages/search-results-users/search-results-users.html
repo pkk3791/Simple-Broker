@@ -1,0 +1,24 @@
+<ion-content no-padding fullscreen>
+  <ion-refresher (ionRefresh)="doRefresh($event)" enabled="query.length">
+    <ion-refresher-content pullingText=" Pull to refresh" refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item *ngFor="let user of users" (click)="showProfile(user.id_str)">
+      <ion-avatar item-start>
+        <img src="{{ user.profile_image_url_https }}">
+      </ion-avatar>
+      <h2>
+        {{ user.name }}
+        <ion-icon name="ios-checkmark-circle" *ngIf="user.verified" class="icon-verified"></ion-icon>
+        <ion-icon name="ios-lock-outline" *ngIf="user.protected" class="icon-protected"></ion-icon>
+      </h2>
+      <p>@{{ user.screen_name }}</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)" enabled="query.length">
+    <ion-infinite-scroll-content loadingText="Loading more users..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

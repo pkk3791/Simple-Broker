@@ -1,0 +1,23 @@
+tweet {
+  .item-md {
+    padding-left: 0;
+  }
+  .item-inner {
+    padding-left: 8px;
+  }
+  .label-md {
+    margin-left: 8px;
+  }
+  .retweet-info {
+    font-weight: 250;
+    font-size: 10px;
+    margin-bottom: 8px;
+  }
+  .private {
+    background: #333;
+    color: #efefef;
+    .retweet-info {
+      color: #bebebe;
+    }
+  }
+}

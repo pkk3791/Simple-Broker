@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>Keywords for Private Mode</ion-card-header>
+    <ion-card-content>
+      <p>The following hashtags will automatically activate the private mode when liking or writing a tweet.</p>
+      <ion-label color="primary" stacked>Keywords:</ion-label>
+      <ion-textarea [(ngModel)]="keywords"></ion-textarea>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>Encryption</ion-card-header>
+    <ion-card-content>
+      <p>To protect your privacy, all data send to the P2P network will be encrypted. Therefore you need to enter or
+        generate
+        a pair of keys. If you run the app on multiple devices, please enter everywhere the same pair of keys.</p>
+      <ion-label color="danger" stacked>Enter your email address:</ion-label>
+      <ion-input [(ngModel)]="email" type="email" required></ion-input>
+      <button ion-button block (click)="generateKeys()">Generate keys</button>
+      <ion-label color="primary" stacked>Private Key:</ion-label>
+      <ion-textarea [(ngModel)]="privateKey"></ion-textarea>
+      <ion-label color="primary" stacked>Public Key:</ion-label>
+      <ion-textarea [(ngModel)]="publicKey"></ion-textarea>
+      <p>Under no circumstances share your private key with any other person!</p>
+      <button ion-button block (click)="publishPublicKey()">Publish public key</button>
+      <button ion-button block (click)="exportPrivateKey()">Export private key</button>
+    </ion-card-content>
+  </ion-card>
+  <button ion-button block (click)="save()">Save settings</button>
+</ion-content>

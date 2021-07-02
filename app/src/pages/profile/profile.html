@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ user.name }}
+      <ion-icon name="ios-checkmark-circle" *ngIf="user.verified" class="icon-verified"></ion-icon>
+      <ion-icon name="ios-lock-outline" *ngIf="user.protected" class="icon-protected"></ion-icon>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content fullscreen (ionScroll)="onScroll($event)">
+  <profile-header [user]="user"></profile-header>
+  <feed [data]="tweets" (onRefresh)="doRefresh($event)" (onLoadMore)="loadMore($event)" [enableRefresh]="enableRefresh"
+    [enableInfiniteScroll]="enableInfiniteScroll"></feed>
+</ion-content>

@@ -1,0 +1,26 @@
+input[type="date"] {
+    background: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid #666;
+    color: #efefef;
+    text-align: center;
+}
+
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(50, 50, 50, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-container {
+    text-align: center;
+    color: #aaa;
+}

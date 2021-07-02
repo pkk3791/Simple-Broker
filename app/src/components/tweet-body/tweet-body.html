@@ -1,0 +1,15 @@
+<div>
+  <div class="tweet-array">
+    <span class="tweet-array-part" *ngFor="let part of tweetArray">
+      <span *ngIf="part.type =='text'" class="text" [innerHtml]="part.text"></span>
+      <a *ngIf="part.type == 'url'" href="{{ part.url }}">{{part.text}}</a>
+      <mention *ngIf="part.type == 'user_mention'" [username]="part.text" [userId]="part.userId"></mention>
+      <hashtag *ngIf="part.type == 'hashtag'" [hashtag]="part.text"></hashtag>
+    </span>
+  </div>
+
+  <img *ngIf="hasPhoto" src="{{ entities.media[0]['media_url_https'] }}" alt="Photo" class="photo" (click)="showPhoto(entities.media[0]['media_url_https'])">
+  <video *ngIf="isGif" src="{{ extended_entities.media[0]['video_info']['variants'][0]['url'] }}" autoplay loop></video>
+  <quoted-status *ngIf="data.quoted_status" [data]="data.quoted_status"></quoted-status>
+  <div *ngIf="!data.quoted_status && data.quoted_status_id" class="removed-tweet">Tweet has been removed...</div>
+</div>

@@ -1,0 +1,13 @@
+<ion-header>
+    <ion-navbar><button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-searchbar [(ngModel)]="query" (ionInput)="onInput()" debounce="500"></ion-searchbar>
+    </ion-navbar>
+</ion-header>
+<ion-content no-padding>
+    <ion-tabs selectedIndex="0" tabsLayout="icon-start" tabsPlacement="bottom">
+        <ion-tab [root]="searchResultsTweets" [rootParams]="query" tabTitle="Tweets" tabIcon="logo-twitter"></ion-tab>
+        <ion-tab [root]="searchResultsUsers" [rootParams]="query" tabTitle="Users" tabIcon="person"></ion-tab>
+    </ion-tabs>
+</ion-content>

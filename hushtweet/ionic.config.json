@@ -1,0 +1,7 @@
+{
+  "name": "hushtweet",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}

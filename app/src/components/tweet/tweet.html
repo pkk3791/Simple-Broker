@@ -1,0 +1,7 @@
+<ion-item text-wrap [class.private]="data.private_tweet">
+  <p *ngIf="data.retweeted_status" class="retweet-info">{{ data.user.name }} has retweeted:</p>
+  <p *ngIf="data.in_reply_to_screen_name" class="retweet-info">Reply to @{{ data.in_reply_to_screen_name }}</p>
+  <tweet-header [user]="user" [tweetCreatedAt]="createdAt"></tweet-header>
+  <tweet-body [data]="data"></tweet-body>
+  <tweet-actions [data]="data"></tweet-actions>
+</ion-item>

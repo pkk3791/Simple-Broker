@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Tweet something</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <!-- Show tweet to retweet or quote (if passed to the page) -->
+  <ion-label *ngIf="retweet" color="primary">Retweet</ion-label>
+  <quoted-status *ngIf="retweet" [data]="retweet.data"></quoted-status>
+  <!-- Show tweet to reply to -->
+  <ion-label *ngIf="replyTweet" color="primary">Reply to</ion-label>
+  <quoted-status *ngIf="replyTweet" [data]="replyTweet.data"></quoted-status>
+  <!-- Form to write a tweet -->
+  <form [formGroup]="tweet" (ngSubmit)="submitTweet()">
+    <ion-item class="padding-0">
+      <ion-label color="primary" stacked>Your tweet</ion-label>
+      <ion-textarea type="text" formControlName="text" maxlength="140" [attr.rows]="4"></ion-textarea>
+    </ion-item>
+    <div class="actions">
+      <span class="progress">
+        <svg width="20" height="20" class="progress-circle">
+          <circle class="background-stroke" cx="10" cy="10" r="8"></circle>
+          <circle class="progress-stroke" cx="10" cy="10" r="8" transform="rotate(-90, 10, 10)" [style.strokeDashoffset]="tweetCharProgress"></circle>
+        </svg>
+        <span class="progress-stats">{{ (tweet.value.text).length }}/140</span>
+      </span>
+      <span class="network-switch">
+        <ion-icon name="logo-twitter"></ion-icon>
+        <ion-toggle checked="false" formControlName="p2p" color="dark"></ion-toggle>
+        <ion-icon name="glasses"></ion-icon>
+      </span>
+      <ion-icon name="warning" *ngIf="showTrigger" class="warning" (click)="showTriggerInfo()"></ion-icon>
+      <button ion-button type="submit" class="submit-tweet">tweet!</button>
+    </div>
+  </form>
+</ion-content>

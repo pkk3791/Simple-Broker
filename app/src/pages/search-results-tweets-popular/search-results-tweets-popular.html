@@ -1,0 +1,4 @@
+<ion-content no-padding>
+  <feed [data]="tweets.statuses" (onRefresh)="doRefresh($event)" (onLoadMore)="loadMore($event)" [enableRefresh]="enableRefresh"
+    [enableInfiniteScroll]="enableInfiniteScroll"></feed>
+</ion-content>

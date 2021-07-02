@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "502393136960",
+    "firebase_url": "https://twitter-hosn.firebaseio.com",
+    "project_id": "twitter-hosn",
+    "storage_bucket": "twitter-hosn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502393136960:android:bf559a5fcd0607bc087ca5",
+        "android_client_info": {
+          "package_name": "com.hushtweet.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502393136960-oe5iuccn3hj8e1cafl5st1oseubhkmvc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hushtweet.app",
+            "certificate_hash": "e6cdede226b0fa8f3b960c3f76bc2297e92451d4"
+          }
+        },
+        {
+          "client_id": "502393136960-secf19m244ra3nddvkokg82s24cc2c6f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hushtweet.app",
+            "certificate_hash": "69b2e949e8e53e732ef6708321bbf85207f3e08d"
+          }
+        },
+        {
+          "client_id": "502393136960-fijhla5n3ajrr5fo8jp720p6l9vsj5ej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJqQdNrx3T9jGo1UssPLSNmey7rWwZIVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502393136960-fijhla5n3ajrr5fo8jp720p6l9vsj5ej.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502393136960:android:0f5dfea086db4b95087ca5",
+        "android_client_info": {
+          "package_name": "de.porth.hybridosn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "502393136960-fijhla5n3ajrr5fo8jp720p6l9vsj5ej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJqQdNrx3T9jGo1UssPLSNmey7rWwZIVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "502393136960-fijhla5n3ajrr5fo8jp720p6l9vsj5ej.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

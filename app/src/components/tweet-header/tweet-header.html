@@ -1,0 +1,14 @@
+<!-- Generated template for the TweetHeaderComponent component -->
+<div class="header-container">
+  <img src="{{ user.profile_image_url_https }}" alt="{{ user.name }}" class="avatar" (click)="showProfile(user.id_str)">
+  <div class="username" (click)="showProfile(user.id_str)">
+    <span>
+      {{ user.name }}
+      <ion-icon name="ios-checkmark-circle" *ngIf="user.verified" class="icon-verified"></ion-icon>
+      <ion-icon name="ios-lock-outline" *ngIf="user.protected" class="icon-protected"></ion-icon>
+    </span>
+    <span class="twitter-handle">@{{user.screen_name}}</span>
+  </div>
+  <div class="timestamp">{{ tweetCreatedAt | diffForHumans }}</div>
+  <ion-icon name="ios-arrow-down" class="options" (click)="showActions(user.id_str)"></ion-icon>
+</div>

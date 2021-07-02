@@ -1,0 +1,25 @@
+<div class="actions-container">
+  <div class="reply" *ngIf="!data.private_tweet" (click)="replyToStatus(data.id_str)">
+    <ion-icon name="undo"></ion-icon>
+  </div>
+  <div class="retweets" *ngIf="!data.user.protected" (click)="retweetStatus(id)">
+    <ion-icon name="ios-git-compare-outline"></ion-icon>
+    <span>{{ data.retweet_count | friendlyNumber }}</span>
+  </div>
+  <div class="likes" *ngIf="!data.private_tweet">
+    <span class="icon-stack" (click)="toggleLike(id)">
+  <ion-icon class="primary-icon" *ngIf="data.favorited" name="ios-heart" color="danger"></ion-icon>
+  <ion-icon class="primary-icon" *ngIf="!data.favorited" name="ios-heart-outline"></ion-icon>
+  <ion-icon class="secondary-icon" name="logo-twitter"></ion-icon>
+</span>
+
+    <span>{{ favoriteCount | friendlyNumber }}</span>
+  </div>
+  <div class="private-likes" *ngIf="!data.private_tweet">
+    <span class="icon-stack" (click)="addPrivateLike(id)">
+      <ion-icon class="primary-icon" name="ios-heart-outline"></ion-icon>
+      <ion-icon class="secondary-icon" name="glasses"></ion-icon>
+    </span>
+    <span>{{ privateFavoriteCount | friendlyNumber }}</span>
+  </div>
+</div>

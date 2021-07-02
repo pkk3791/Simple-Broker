@@ -1,0 +1,43 @@
+quoted-status {
+  .quoted-tweet {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 5px 0;
+  }
+  p {
+    white-space: pre-wrap;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    color: #555;
+    font-size: 12px;
+    margin-bottom: 3px;
+    .avatar {
+      border-radius: 50%;
+      width: 28px;
+      margin: 3px 6px 3px 3px;
+    }
+    .twitter-handle {
+      color: #aaa;
+      font-weight: 250;
+      margin-left: 5px;
+    }
+    .timestamp {
+      margin-left: auto;
+      color: #aaa;
+      font-size: 10px;
+    }
+  }
+}
+
+.private quoted-status {
+  .header {
+    color: #efefef;
+  }
+  .body p {
+    color: #efefef;
+  }
+}

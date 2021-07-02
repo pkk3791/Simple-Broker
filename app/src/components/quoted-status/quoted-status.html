@@ -1,0 +1,13 @@
+<!-- Generated template for the QuotedStatusComponent component -->
+<div class="quoted-tweet">
+  <div class="header">
+    <img src="{{ data.user.profile_image_url_https }}" alt="{{ data.user.name }}" class="avatar">
+    <span>{{ data.user.name }}</span>
+    <span class="twitter-handle">@{{ data.user.screen_name }}</span>
+    <span class="timestamp">{{ data.created_at | diffForHumans }}</span>
+  </div>
+  <div class="body">
+    <p>{{ data.full_text }}</p>
+    <img *ngIf="hasPhoto" src="{{ data.entities.media[0]['media_url_https'] }}" alt="Photo" (click)="showPhoto(data.entities.media[0]['media_url_https'])">
+  </div>
+</div>

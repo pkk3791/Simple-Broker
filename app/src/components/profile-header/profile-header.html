@@ -1,0 +1,28 @@
+<!-- Generated template for the ProfileHeaderComponent component -->
+<div>
+  <div class="profile-banner" [style.background-image]="'url('+ banner +')'" [style.background-color]="'#' + user.profile_background_color">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 300 100" xml:space="preserve" width="100%" class="svg-triangle">
+      <polygon points="0,75  0,100 300,100 300,99" fill="#FFFFFF" />
+    </svg>
+    <img src="{{ user.profile_image_url_https | highResolution }}" alt="{{ user.name }}" class="avatar" (click)="showProfilePicture()">
+    <button ion-button color="primary" *ngIf="!user.following" (click)="follow(user.id_str)" class="follow-button">Follow</button>
+    <button ion-button color="danger" *ngIf="user.following" (click)="unfollow(user.id_str)" class="follow-button">Unfollow</button>
+  </div>
+  <div padding>
+    <p class="profile-stats">
+      {{ user.followers_count | friendlyNumber }} Followers |
+      {{ user.friends_count | friendlyNumber }} Following |
+      {{ user.statuses_count | friendlyNumber }} Tweets
+    </p>
+    <p class="profile-description" *ngIf="user.description">{{ user.description }}</p>
+    <div class="profile-infos">
+      <span class="user-location" *ngIf="user.location">
+        <ion-icon name="pin"></ion-icon>&nbsp;{{ user.location }}
+      </span>
+      <span class="user-website" *ngIf="user.url">
+        <ion-icon name="link"></ion-icon>&nbsp;
+        <span [innerHTML]="user.url | replaceUrls: user.entities.url.urls"></span>
+      </span>
+    </div>
+  </div>
+</div>

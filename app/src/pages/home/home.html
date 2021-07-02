@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <feed [data]="tweets" (onRefresh)="doRefresh($event)" (onLoadMore)="loadMore($event)"></feed>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="privateTweetOnly()" [ngStyle]="{'color':color}">
+      <ion-icon name="logo-twitter"></ion-icon>
+    </button>
+    <button ion-fab (click)="writeTweet()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
