@@ -34,13 +34,12 @@ import useFirebaseAuth from "@/hooks/firebase";
 import { Plugins } from '@capacitor/core';
 
 // TODO
-import useBG from "@/hooks/bg"
-
-// TODO
 const { App: IonicApp, BackgroundTask } = Plugins;
 const { authCheck  } = useFirebaseAuth();
 
 import Tweet from '@/components/tweet/index.vue'
+
+import messaging from "@/hooks/messaging";
 
 const app = createApp(App)
   .use(VuePlyr, {
@@ -60,25 +59,24 @@ authCheck()
   });
 
   
-// TODO
-const { startForegroundFetch, stopForegroundFetch, nextFetch } = useBG()
+const messageProcessor = messaging()
   
 IonicApp.addListener('appStateChange', state => {
   if (!state.isActive) {
+    console.log("App has become inactive. Restart message processor");
+    console.log("Started message processor")
+    
     // The app has become inactive. We should check if we have some work left to do, and, if so,
     // execute a background task that will allow us to finish that work before the OS
     // suspends or terminates our app:
 
-    stopForegroundFetch()
+    //messageProcessor.startProcessing()
 
-    let taskId = BackgroundTask.beforeExit(async () => {
+    const taskId = BackgroundTask.beforeExit(async () => {
       // In this function We might finish an upload, let a network request
       // finish, persist some data, or perform some other task
 
-      // Example of long task
-      for (let i = 0; i < 5; i++) {
-        await nextFetch()
-      }
+      await messageProcessor.restartProcessing();
 
 
       // Must call in order to end our task otherwise
@@ -92,7 +90,8 @@ IonicApp.addListener('appStateChange', state => {
     const state = useFirebaseAuth();
     const isAuthenticated = !!(state.accessToken.value && state.accessTokenSecret.value && state.user.value)
     if (isAuthenticated) {
-      startForegroundFetch()
+      console.log("Authenticated. Started message processor")
+      messageProcessor.startProcessing()
     }
   }
 });

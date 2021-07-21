@@ -36,7 +36,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx", "src/utils/timeago.js"
-  ],
+, "src/secure/stompitClient.js"  ],
   "exclude": [
     "node_modules",
     "src/types"

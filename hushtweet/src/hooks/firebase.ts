@@ -5,8 +5,6 @@ import {cfaSignInTwitter, cfaSignOut, TwitterSignInResult} from 'capacitor-fireb
 import Storage from '@/utils/storage'
 import FIREBASE_CONFIG from "./.env.firebase";
 import useTwitter from './twitter'
-import useBG from "@/hooks/bg"
-const { startForegroundFetch } = useBG()
 
 // import useCrypto from '@/secure/crypto'
 const state = reactive<{ user: any; profile: any; accessToken: string | null; accessTokenSecret: string | null; initialized: boolean; error: any; email: string | null }>({
@@ -45,7 +43,7 @@ export default function() {
           Storage.setItem('accessTokenSecret', state.accessTokenSecret)
 
           // TODO
-          startForegroundFetch()
+          //startForegroundFetch()
 
           resolve(!!(state.accessToken && state.accessTokenSecret && state.user))
         },
@@ -127,7 +125,7 @@ export default function() {
           initApi(String(state.accessToken), String(state.accessTokenSecret))
 
           // TODO
-          startForegroundFetch()
+          //startForegroundFetch()
 
           resolve(true);
         });

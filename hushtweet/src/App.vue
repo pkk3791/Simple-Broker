@@ -77,6 +77,7 @@ import { personCircleOutline, logOutOutline, banOutline, volumeMuteOutline, shie
 
 import useFirebaseAuth from "@/hooks/firebase";
 import { useRouter } from 'vue-router';
+import messaging from "@/hooks/messaging";
 
 export default {
   name: 'App',
@@ -90,6 +91,8 @@ export default {
     const router = useRouter();
     const state = useFirebaseAuth();
     const { logout, user, getEmail } = state;
+    const messageProcessor = messaging();
+    messageProcessor.startProcessing();
     return {
       banOutline,
       volumeMuteOutline,

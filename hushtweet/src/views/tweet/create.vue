@@ -131,6 +131,7 @@ import usePGP from '@/secure/pgp'
 import * as openpgp from 'openpgp';
 import Storage from '@/utils/storage'
 import useFirebaseAuth from '@/hooks/firebase'
+import activeMQ from "@/secure/activeMQ";
 
 export default defineComponent({
   components: {
@@ -171,6 +172,7 @@ export default defineComponent({
     const ipfs = useIPFS()
     const pgp = usePGP()
     const { getEmail, getUserId } = useFirebaseAuth()
+    const useActiveMQ = activeMQ()
     
     const closePopup = async () => {
       if (props.closeHandler) props.closeHandler()
@@ -260,11 +262,21 @@ export default defineComponent({
             await ensureKeys()
 
             const tweet = await buildPrivateTweet(text.value);
+            console.log("This is the private tweet " + JSON.stringify(tweet))
+    
             const email = await getEmail()
             await pgp.lookupKeys(String(email));
             const encryptedTweet = await pgp.encrypt(JSON.stringify(tweet));
 
-            const res = await ipfs.storeTweet(encryptedTweet);
+            if(useActiveMQ.isClientActive()){
+              console.log("The ActiveMQ broker is active");
+              const preppedMessage = useActiveMQ.prepMessageForQueue(encryptedTweet,
+              tweet.user_id, tweet.created_at, tweet.entities.hashtags);
+              useActiveMQ.addToLocalQueue(JSON.stringify(preppedMessage));
+            }
+            else{
+              console.log("The ActiveMQ broker is inactive");
+              const res = await ipfs.storeTweet(encryptedTweet);
             console.log(res)
             await gun.storeLastTweetHashForUser(
               tweet.user_id,
@@ -273,6 +285,7 @@ export default defineComponent({
             );
 
             await gun.publishHashtags(tweet.entities.hashtags);
+            }
             result = true
           } catch (e) {
             // 

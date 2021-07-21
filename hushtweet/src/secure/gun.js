@@ -47,17 +47,48 @@ export default () => {
     console.log(tmp)
   }
 
+  const logPrivateTweetHashsForUserDebug = async (
+    userId
+  ) => {
+    console.log("user id")
+    console.log("1205934370546241541")
+    const privateTweets = await gun
+      .get(osnPrefix)
+      .get("tweets")
+      .get("1205934370546241541", function (ack) {
+      if(!ack.put){
+          console.log("Get unsuccessful - not found")
+        }
+        else{
+          console.log("get successful")
+        }
+      })
+
+    if (privateTweets) {
+      const entries = await Promise.all(
+        Object.keys(privateTweets)
+        .filter(key => key !== "_")
+        .map(key => gun.get(key).then())
+      );
+      console.log('privateTweets-logging')
+      console.log(entries)
+
+  }
+}
+
   const fetchPrivateTweetHashsForUserInInterval = async (
     userId,
     intervalStart,
     intervalEnd
   ) => {
+    //logPrivateTweetHashsForUserDebug(userId);
     const privateTweets = await gun
       .get(osnPrefix)
       .get("tweets")
       .get(userId)
 
     console.log(`${intervalStart} ${intervalEnd}`)
+    console.log(privateTweets)
 
     if (privateTweets) {
       const entries = await Promise.all(
@@ -192,7 +223,8 @@ export default () => {
     setEmail,
     getEmail,
     storePrivateKeyHistory,
-    getPvtKeyHistory
+    getPvtKeyHistory,
+    logPrivateTweetHashsForUserDebug
   }
 
 }
